@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import {View, SafeAreaView, FlatList, Text, StyleSheet, TextInput, Image, StatusBar} from 'react-native';
 import {Card} from './src/components/card'
 import { DATA } from "./src/data/data";
+// get our fontawesome imports
 
 class App extends Component {
   render(){
-    
-    const renderItem = ({ item }) => {
-        <Card name={DATA[0].name} address={DATA[0].address} uri={DATA[0].uri} bedrooms={DATA[0].bedrooms} bathrooms={DATA[0].bathrooms} size={DATA[0].size} price={DATA[0].price}></Card>
-    }
 
     return(
       <SafeAreaView style={styles.container}>
-        <Text>{DATA[0].name}</Text>
       <FlatList
         data={DATA}
         renderItem={({item})=>(
@@ -30,7 +26,6 @@ const styles = StyleSheet.create({
   },
   container:{
       flex:1,
-      marginTop: StatusBar.currentHeight || 0,
   },
 })
 

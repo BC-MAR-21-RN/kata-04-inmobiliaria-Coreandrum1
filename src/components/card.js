@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TextInput, Image} from 'react-native';
 
+// get our fontawesome imports
+import { Icon } from 'react-native-elements'
+
 export class Card extends Component {
     constructor(props){
         super(props)        
@@ -13,15 +16,21 @@ export class Card extends Component {
         <View style={styles.container}>
             <View style={styles.leftBox}>
                 <Image source={{uri: `${uri}`}} style={styles.card}></Image>
-                <Text style={styles.score}>4.7</Text>
+                <View style={styles.score}>
+                    <Icon size={18} name='star' color='#eeba00' style={styles.scoreIcon}/>
+                    <Text style={styles.scoreText}>4.7</Text>
+                </View>
             </View>
             <View style={styles.rightBox}>
                 <Text style={{fontSize: 20}}>{name}</Text>
                 <Text style={styles.address}>{address}</Text>
                 <View style={styles.specs}>
-                    <Text>{bedrooms}</Text>
-                    <Text>{bathrooms}</Text>
-                    <Text>{size} ft²</Text>
+                    <Icon size={18} name='bed' type='font-awesome' color='#80838f' style={styles.scoreIcon}/>
+                    <Text style={styles.scoreText2}>{bedrooms}</Text>
+                    <Icon size={18} name='shower' type='font-awesome' color='#80838f' style={styles.scoreIcon}/>
+                    <Text style={styles.scoreText2}>{bathrooms}</Text>
+                    <Icon size={18} name='square' type='font-awesome' color='#80838f' style={styles.scoreIcon}/>
+                    <Text style={styles.scoreText2}>{size} ft²</Text>
                 </View>
                 <Text style={{fontSize: 20}}>${price}/m</Text>
             </View>
@@ -61,12 +70,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     score:{
+        flex: 1,
+        flexDirection: 'row',
         position: 'absolute',
-        color: '#826b32',
-        fontWeight: '700',
         backgroundColor: '#fbedb7',
         padding: 7,
         borderRadius: 10,
         top: 75
+    },
+    scoreText: {
+        fontWeight: '700',
+        color: '#826b32',
+
+    },
+    scoreText2: {
+        paddingRight: 20
+    },
+    scoreItem:{
+        height: 3,
+        width: 3,
+    },
+    scoreIcon:{
+        paddingRight: 4
     }
   })
