@@ -1,10 +1,29 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TextInput, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { Icon } from "react-native-elements";
 
 export class Card extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      fav: false,
+    };
+  }
+
+  onFavChange() {
+    const { fav } = this.state;
+    if (fav) {
+      return "#eb315d";
+    } else {
+      return "#ffff";
+    }
   }
 
   render() {
@@ -35,7 +54,16 @@ export class Card extends Component {
         </View>
         <View style={styles.rightBox}>
           <Text style={{ fontSize: 20 }}>{name}</Text>
-          <Text style={styles.address}>{address}</Text>
+          <View style={styles.specs}>
+            <Icon
+              size={18}
+              name="map-marker"
+              type="font-awesome"
+              color="#80838f"
+              style={styles.scoreIcon}
+            />
+            <Text style={styles.address}>{address}</Text>
+          </View>
           <View style={styles.specs}>
             <Icon
               size={18}
@@ -62,7 +90,25 @@ export class Card extends Component {
             />
             <Text style={styles.scoreText2}>{size} ft²</Text>
           </View>
-          <Text style={{ fontSize: 20 }}>${price}/m</Text>
+          <View style={styles.specs}>
+            <Text style={{ fontSize: 20 }}>${price}/m</Text>
+            <TouchableOpacity
+              style={styles.fav}
+              onPress={() => {
+                this.setState((prevState) => ({
+                  fav: !prevState.fav,
+                }));
+              }}
+            >
+              <Icon
+                size={20}
+                name="heart"
+                type="font-awesome"
+                color={this.state.fav ? "#ff5050" : "#ffff"}
+                style={styles.favIcon}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -95,6 +141,7 @@ const styles = StyleSheet.create({
   },
   address: {
     color: "#737373",
+    paddingLeft: 5,
   },
   specs: {
     flexDirection: "row",
@@ -123,4 +170,12 @@ const styles = StyleSheet.create({
   scoreIcon: {
     paddingRight: 4,
   },
+  fav: {
+    borderRadius: 50,
+    backgroundColor: "#00b074",
+    padding: 10,
+    position: "absolute",
+    left: 180,
+  },
+  favIcon: {},
 });
