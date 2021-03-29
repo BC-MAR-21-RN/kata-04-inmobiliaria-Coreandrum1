@@ -52,6 +52,33 @@ export class Card extends Component {
     );
   }
 
+  houseDetails() {
+    return (
+      <View style={styles.specs}>
+        {this.detail("#80838f", 18, "bed")}
+        <Text style={styles.scoreText2}>{this.props.bedrooms}</Text>
+        {this.detail("#80838f", 18, "shower")}
+        <Text style={styles.scoreText2}>{this.props.bathrooms}</Text>
+        {this.detail("#80838f", 18, "square")}
+        <Text style={styles.scoreText2}>{this.props.size} ft²</Text>
+      </View>
+    );
+  }
+
+  detail(color, size, icon) {
+    return (
+      <View>
+        <Icon
+          size={size}
+          name={icon}
+          type="font-awesome"
+          color={color}
+          style={styles.scoreIcon}
+        />
+      </View>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -68,32 +95,7 @@ export class Card extends Component {
             />
             <Text style={styles.address}>{this.props.address}</Text>
           </View>
-          <View style={styles.specs}>
-            <Icon
-              size={18}
-              name="bed"
-              type="font-awesome"
-              color="#80838f"
-              style={styles.scoreIcon}
-            />
-            <Text style={styles.scoreText2}>{this.props.bedrooms}</Text>
-            <Icon
-              size={18}
-              name="shower"
-              type="font-awesome"
-              color="#80838f"
-              style={styles.scoreIcon}
-            />
-            <Text style={styles.scoreText2}>{this.props.bathrooms}</Text>
-            <Icon
-              size={18}
-              name="square"
-              type="font-awesome"
-              color="#80838f"
-              style={styles.scoreIcon}
-            />
-            <Text style={styles.scoreText2}>{this.props.size} ft²</Text>
-          </View>
+          {this.houseDetails()}
           <View style={styles.specs}>
             <Text style={{ fontSize: 20 }}>${this.props.price}/m</Text>
             {this.favButton()}
@@ -166,5 +168,4 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 180,
   },
-  favIcon: {},
 });
