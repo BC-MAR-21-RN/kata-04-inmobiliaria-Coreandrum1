@@ -17,15 +17,6 @@ export class Card extends Component {
     };
   }
 
-  onFavChange() {
-    const { fav } = this.state;
-    if (fav) {
-      return "#eb315d";
-    } else {
-      return "#ffff";
-    }
-  }
-
   render() {
     const {
       name,
