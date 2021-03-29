@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
 
 export class Card extends Component {
@@ -45,10 +38,7 @@ export class Card extends Component {
   imageInfo() {
     return (
       <View style={styles.leftBox}>
-        <Image
-          source={{ uri: `${this.props.uri}` }}
-          style={styles.card}
-        ></Image>
+        <Image source={{ uri: `${this.props.uri}` }} style={styles.card} />
         <View style={styles.score}>
           <Icon
             size={18}

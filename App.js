@@ -1,17 +1,7 @@
 import React, { Component } from "react";
-import {
-  View,
-  SafeAreaView,
-  FlatList,
-  Text,
-  StyleSheet,
-  TextInput,
-  Image,
-  StatusBar,
-} from "react-native";
+import { SafeAreaView, FlatList, StyleSheet } from "react-native";
 import { Card } from "./src/components/card";
 import { DATA } from "./src/data/data";
-// get our fontawesome imports
 
 class App extends Component {
   render() {
@@ -29,7 +19,7 @@ class App extends Component {
               size={item.size}
               price={item.price}
               score={item.score}
-            ></Card>
+            />
           )}
           keyExtractor={(item) => item.id}
         />
