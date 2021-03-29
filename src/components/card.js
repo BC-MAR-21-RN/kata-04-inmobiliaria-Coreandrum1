@@ -17,34 +17,57 @@ export class Card extends Component {
     };
   }
 
-  render() {
-    const {
-      name,
-      address,
-      uri,
-      bedrooms,
-      bathrooms,
-      size,
-      price,
-      score,
-    } = this.props;
+  favButton() {
+    return (
+      <TouchableOpacity
+        style={styles.fav}
+        onPress={() => {
+          this.switchBoolState();
+        }}
+      >
+        <Icon
+          size={20}
+          name="heart"
+          type="font-awesome"
+          color={this.state.fav ? "#ff5050" : "#ffff"}
+          style={styles.favIcon}
+        />
+      </TouchableOpacity>
+    );
+  }
 
+  switchBoolState() {
+    this.setState((prevState) => ({
+      fav: !prevState.fav,
+    }));
+  }
+
+  imageInfo() {
+    return (
+      <View style={styles.leftBox}>
+        <Image
+          source={{ uri: `${this.props.uri}` }}
+          style={styles.card}
+        ></Image>
+        <View style={styles.score}>
+          <Icon
+            size={18}
+            name="star"
+            color="#eeba00"
+            style={styles.scoreIcon}
+          />
+          <Text style={styles.scoreText}>{this.props.score}</Text>
+        </View>
+      </View>
+    );
+  }
+
+  render() {
     return (
       <View style={styles.container}>
-        <View style={styles.leftBox}>
-          <Image source={{ uri: `${uri}` }} style={styles.card}></Image>
-          <View style={styles.score}>
-            <Icon
-              size={18}
-              name="star"
-              color="#eeba00"
-              style={styles.scoreIcon}
-            />
-            <Text style={styles.scoreText}>{score}</Text>
-          </View>
-        </View>
+        {this.imageInfo()}
         <View style={styles.rightBox}>
-          <Text style={{ fontSize: 20 }}>{name}</Text>
+          <Text style={{ fontSize: 20 }}>{this.props.name}</Text>
           <View style={styles.specs}>
             <Icon
               size={18}
@@ -53,7 +76,7 @@ export class Card extends Component {
               color="#80838f"
               style={styles.scoreIcon}
             />
-            <Text style={styles.address}>{address}</Text>
+            <Text style={styles.address}>{this.props.address}</Text>
           </View>
           <View style={styles.specs}>
             <Icon
@@ -63,7 +86,7 @@ export class Card extends Component {
               color="#80838f"
               style={styles.scoreIcon}
             />
-            <Text style={styles.scoreText2}>{bedrooms}</Text>
+            <Text style={styles.scoreText2}>{this.props.bedrooms}</Text>
             <Icon
               size={18}
               name="shower"
@@ -71,7 +94,7 @@ export class Card extends Component {
               color="#80838f"
               style={styles.scoreIcon}
             />
-            <Text style={styles.scoreText2}>{bathrooms}</Text>
+            <Text style={styles.scoreText2}>{this.props.bathrooms}</Text>
             <Icon
               size={18}
               name="square"
@@ -79,26 +102,11 @@ export class Card extends Component {
               color="#80838f"
               style={styles.scoreIcon}
             />
-            <Text style={styles.scoreText2}>{size} ft²</Text>
+            <Text style={styles.scoreText2}>{this.props.size} ft²</Text>
           </View>
           <View style={styles.specs}>
-            <Text style={{ fontSize: 20 }}>${price}/m</Text>
-            <TouchableOpacity
-              style={styles.fav}
-              onPress={() => {
-                this.setState((prevState) => ({
-                  fav: !prevState.fav,
-                }));
-              }}
-            >
-              <Icon
-                size={20}
-                name="heart"
-                type="font-awesome"
-                color={this.state.fav ? "#ff5050" : "#ffff"}
-                style={styles.favIcon}
-              />
-            </TouchableOpacity>
+            <Text style={{ fontSize: 20 }}>${this.props.price}/m</Text>
+            {this.favButton()}
           </View>
         </View>
       </View>
